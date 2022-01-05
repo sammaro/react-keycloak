@@ -4,6 +4,20 @@ import React from "react";
 const Nav = () => {
   const { keycloak  } = useKeycloak();
   // console.log(initialized);
+  
+  var requestOptions = {
+    method: "GET",
+    redirect: "follow",
+    headers: { "Content-Type": "application/json" },
+    mode: "no-cors",
+  };
+
+  fetch("api/token", requestOptions)
+    .then((response) => response.text())
+    .then((result) => console.log(result))
+    .catch((error) => console.log("error", error));
+
+
   return (
     <div>
       <div className="top-0 w-full flex flex-wrap">

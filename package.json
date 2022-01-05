@@ -2,6 +2,7 @@
   "name": "react-keycloak",
   "version": "0.1.0",
   "private": true,
+  "proxy":"http://localhost:4001/",
   "dependencies": {
     "@react-keycloak/web": "^3.4.0",
     "@testing-library/jest-dom": "^5.14.1",
@@ -21,7 +22,9 @@
     "start": "react-scripts start && nodemon .",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "node-env-run server --exec nodemon",
+    "dev": "run-p server start"
   },
   "eslintConfig": {
     "extends": [
@@ -42,6 +45,10 @@
     ]
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "express-pino-logger": "^7.0.0",
+    "node-env-run": "^4.0.2",
+    "nodemon": "^2.0.15",
+    "npm-run-all": "^4.1.5",
+    "pino-colada": "^2.2.2"
   }
 }
