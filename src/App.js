@@ -14,7 +14,15 @@ function App() {
         <Nav />
         <BrowserRouter>
           <Routes>
-            <Route exact path="/" element={<WelcomePage />} />
+            <Route
+              exact
+              path="/"
+              element={
+                <PrivateRoute>
+                  <WelcomePage />
+                </PrivateRoute>
+              }
+            />
             <Route
               path="/secured"
               element={

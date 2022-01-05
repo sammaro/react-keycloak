@@ -1,22 +1,33 @@
+import React, { useEffect } from "react";
 import { useKeycloak } from "@react-keycloak/web";
-import React from "react";
 
 const Nav = () => {
-  const { keycloak  } = useKeycloak();
-  // console.log(initialized);
-  
-  var requestOptions = {
-    method: "GET",
-    redirect: "follow",
-    headers: { "Content-Type": "application/json" },
-    mode: "no-cors",
-  };
+  const { keycloak } = useKeycloak();
 
-  fetch("api/getToken", requestOptions)
-    .then((response) => response.text())
-    .then((result) => console.log(result))
-    .catch((error) => console.log("error", error));
+  useEffect(() => {
+    if (keycloak.authenticated) {
+      var encodeUser = Buffer.from(
+        keycloak.tokenParsed.lacajaAppsUsernames
+      ).toString("base64");
+      var headers = new Headers();
+      headers.append("Content-Type", "application/x-www-form-urlencoded");
 
+      var urlencoded = new URLSearchParams();
+      urlencoded.append("auth", encodeUser);
+
+      var requestOptions = {
+        method: "POST",
+        headers: headers,
+        body: urlencoded,
+        redirect: "follow",
+      };
+
+      fetch("/api/info", requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.log("error", error));
+    }
+  }, [keycloak.authenticated]);
 
   return (
     <div>
