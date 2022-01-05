@@ -10,7 +10,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.get("/getToken", (req, res) => {
+app.get("/api/getToken", (req, res) => {
   res.send({
     status: "sucess",
     message: "Token",
