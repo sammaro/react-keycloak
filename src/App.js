@@ -5,32 +5,29 @@ import Nav from "./components/Nav";
 import PrivateRoute from "./helpers/PrivateRoute";
 import keycloak from "./Keycloak";
 import WelcomePage from "./pages/Homepage";
+import { Listado } from "./pages/Listado";
 import SecuredPage from "./pages/Securedpage";
 
 function App() {
   return (
     <div>
-      <ReactKeycloakProvider authClient={keycloak}>
+      <ReactKeycloakProvider
+        initOptions={{ onLoad: "login-required" }}
+        authClient={keycloak}
+      >
         <Nav />
         <BrowserRouter>
           <Routes>
+            <Route exact path="/" element={<WelcomePage />} />
             <Route
-              exact
-              path="/"
-              element={
-                <PrivateRoute>
-                  <WelcomePage />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/secured"
+              path="/datosPerfil"
               element={
                 <PrivateRoute>
                   <SecuredPage />
                 </PrivateRoute>
               }
             />
+            <Route path="/listado" element={<Listado />} />
           </Routes>
         </BrowserRouter>
       </ReactKeycloakProvider>

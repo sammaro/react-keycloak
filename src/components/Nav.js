@@ -1,33 +1,12 @@
-import React, { useEffect } from "react";
 import { useKeycloak } from "@react-keycloak/web";
+import React from "react";
 
 const Nav = () => {
   const { keycloak } = useKeycloak();
 
-  useEffect(() => {
-    if (keycloak.authenticated) {
-      var encodeUser = Buffer.from(
-        keycloak.tokenParsed.lacajaAppsUsernames
-      ).toString("base64");
-      var headers = new Headers();
-      headers.append("Content-Type", "application/x-www-form-urlencoded");
-
-      var urlencoded = new URLSearchParams();
-      urlencoded.append("auth", encodeUser);
-
-      var requestOptions = {
-        method: "POST",
-        headers: headers,
-        body: urlencoded,
-        redirect: "follow",
-      };
-
-      fetch("/api/info", requestOptions)
-        .then((response) => response.text())
-        .then((result) => console.log(result))
-        .catch((error) => console.log("error", error));
-    }
-  }, [keycloak.authenticated]);
+  if (!keycloak.authenticated) {
+    return <h1>loading...</h1>;
+  }
 
   return (
     <div>
@@ -44,9 +23,16 @@ const Nav = () => {
                     Home
                   </a>
                 </li>
+                {!!keycloak.authenticated && (
+                  <li>
+                    <a className="hover:text-blue-800" href="/datosPerfil">
+                      Datos Perfil
+                    </a>
+                  </li>
+                )}
                 <li>
-                  <a className="hover:text-blue-800" href="/secured">
-                    Secured Page
+                  <a className="hover:text-blue-800" href="/listado">
+                    Listado
                   </a>
                 </li>
               </ul>
