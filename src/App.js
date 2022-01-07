@@ -10,7 +10,7 @@ import SecuredPage from "./pages/Securedpage";
 
 function App() {
   return (
-    <div>
+    <div className="pt-20">
       <ReactKeycloakProvider
         initOptions={{ onLoad: "login-required" }}
         authClient={keycloak}

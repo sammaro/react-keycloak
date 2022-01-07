@@ -31,6 +31,7 @@ const Secured = () => {
           return null;
         });
     }
+     // eslint-disable-next-line
   }, [userData]);
 
   const {
@@ -46,7 +47,7 @@ const Secured = () => {
 
   return (
     <div>
-      <h1 className="text-black text-4xl">Datos de Perfil</h1>
+      <h1 className="text-[#da484c] text-[1.4rem]">Datos de Perfil</h1>
       <ul>
         <li>tipoUser: {tipoUser}</li>
         <li>nomUser: {nomUser}</li>

@@ -1,5 +1,6 @@
 import { useKeycloak } from "@react-keycloak/web";
 import { useLayoutEffect, useState } from "react";
+import {Buffer} from 'buffer';
 
 export const useUserData = () => {
   const { keycloak, initialized } = useKeycloak();

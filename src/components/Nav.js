@@ -5,14 +5,14 @@ const Nav = () => {
   const { keycloak } = useKeycloak();
 
   if (!keycloak.authenticated) {
-    return <h1>loading...</h1>;
+    return <h1 className="text-[#da484c] text-[1.4rem] px-4">loading...</h1>;
   }
 
   return (
-    <div>
+    <nav className="fixed right-0 left-0 z-[1030] flex items-center py-2 h-[72px] bg-white md:justify-start top-0 border-b-2">
       <div className="top-0 w-full flex flex-wrap">
         <section className="x-auto">
-          <nav className="flex justify-between bg-gray-200 text-blue-800 w-screen">
+          <nav className="flex justify-between text-[#da484c] w-screen">
             <div className="px-5 xl:px-12 py-6 flex w-full items-center">
               <h1 className="text-3xl font-bold font-heading">
                 Keycloak React AUTH.
@@ -63,7 +63,7 @@ const Nav = () => {
           </nav>
         </section>
       </div>
-    </div>
+    </nav>
   );
 };
 

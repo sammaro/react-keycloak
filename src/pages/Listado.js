@@ -1,5 +1,5 @@
 import { useKeycloak } from "@react-keycloak/web";
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Cliente } from "./Cliente";
 
 export const Listado = (props) => {
@@ -32,17 +32,17 @@ export const Listado = (props) => {
   }, [keycloak.authenticated]);
 
   return (
-    <div>
-      <h1>Lista Grupo</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>descripcion</th>
-            <th>mcaActivo</th>
-            <th>fecAct</th>
-            <th>sistema</th>
-            <th>userAct</th>
-            <th>idGrupo</th>
+    <div className="mx-4">
+      <h1 className="text-[#da484c] text-[1.4rem]">Lista Grupo</h1>
+      <table className="text-sm w-full top-52">
+        <thead className="bg-[#da484c] text-white top-[70px] sticky">
+          <tr className="">
+            <th className="my-2 p-2">fecAct</th>
+            <th className="my-2 p-2">mcaActivo</th>
+            <th className="my-2 p-2">sistema</th>
+            <th className="my-2 p-2">userAct</th>
+            <th className="my-2 p-2">idGrupo</th>
+            <th className="my-2 p-2">descripcion</th>
           </tr>
         </thead>
         <tbody>
@@ -54,6 +54,15 @@ export const Listado = (props) => {
               )
             : null}
         </tbody>
+        <tfoot className="bg-[#da484c] text-white">
+        <tr className="">
+          <td colspan="6" className="my-2 p-2 text-right">
+          {undefined !== respuesta && undefined !== respuesta.listaGrupo
+            ? `${respuesta.listaGrupo.length} rows`
+            : null}
+          </td>
+        </tr>
+        </tfoot>
       </table>
     </div>
   );
